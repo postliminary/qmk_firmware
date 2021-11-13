@@ -117,3 +117,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true; //Process all other keycodes normally
     }
 }
+
+void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    // Apply led matrix mask to only light up active layer keys
+    // TODO cache/precalc the led assignments
+    const uint16_t layer_id = get_highest_layer(layer_state|default_layer_state);
+    if (layer_id == 0) {
+        return;
+    }
+
+    const uint16_t (*layer)[MATRIX_COLS] = keymaps[layer_id];
+    for (uint8_t x = 0; x <= MATRIX_ROWS; x++) {
+        for (uint8_t y = 0; y <= MATRIX_COLS; y++) {
+            if (layer[x][y] == _______) {
+                uint8_t led_i = g_led_config.matrix_co[x][y];
+                if (led_min <= led_i && led_i <= led_max) {
+                    rgb_matrix_set_color(led_i, 0, 0, 0);
+                }
+            }
+        }
+    }
+}
