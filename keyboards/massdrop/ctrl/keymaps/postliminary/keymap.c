@@ -1,16 +1,16 @@
 #include QMK_KEYBOARD_H
 
-#define MILLISECONDS_IN_SECOND 1000
-#define RGB_DEFAULT_TIME_OUT 600 // 10 minutes in seconds
+#define MILLISECONDS_IN_SECOND 1000         // Conversion factor
+#define RGB_DEFAULT_TIME_OUT 600            // 10 minutes in seconds
 
-static uint16_t idle_timer;                    // Idle LED timeout timer
-static uint8_t idle_second_counter;            // Idle LED seconds counter, counts seconds not milliseconds
-static uint8_t key_event_counter;              // This counter is used to check if any keys are being held
-static bool rgb_enabled_flag;                  // Current LED state flag. If false then LED is off.
-static bool rgb_time_out_enable;               // Idle LED toggle enable. If false then LED will not turn off after idle timeout.
-static bool rgb_time_out_user_value;           // This holds the toggle value set by user with ROUT_TG. It's necessary as RGB_TOG changes timeout enable.
-static uint16_t rgb_time_out_seconds;          // Idle LED timeout value, in seconds not milliseconds
-static led_flags_t rgb_time_out_saved_flag;    // Store LED flg before timeout so it can be restored when LED is turned on again.
+static uint16_t idle_timer;                 // Idle LED timeout timer
+static uint16_t idle_second_counter;        // Idle LED seconds counter, counts seconds not milliseconds
+static uint16_t key_event_counter;          // This counter is used to check if any keys are being held
+static bool rgb_enabled_flag;               // Current LED state flag. If false then LED is off.
+static bool rgb_time_out_enable;            // Idle LED toggle enable. If false then LED will not turn off after idle timeout.
+static bool rgb_time_out_user_value;        // This holds the toggle value set by user with ROUT_TG. It's necessary as RGB_TOG changes timeout enable.
+static uint16_t rgb_time_out_seconds;       // Idle LED timeout value, in seconds not milliseconds
+static led_flags_t rgb_time_out_saved_flag; // Store LED flg before timeout so it can be restored when LED is turned on again.
 
 enum ctrl_keycodes {
     U_T_AUTO = SAFE_RANGE, // USB Extra Port Toggle Auto Detect / Always Active
