@@ -9,13 +9,13 @@ static bool lights_enabled;             // Current LED state flag. If false then
 static bool timeout_enabled;            // Idle LED toggle enable. If false then LED will not turn off after idle timeout.
 static bool timeout_user_value;         // This holds the toggle value set by user with ROUT_TG. It's necessary as RGB_TOG changes timeout enable.
 static uint16_t timeout_seconds;        // Idle LED timeout value, in seconds not milliseconds
-#ifdef LIGHTS_OUT_RGB_ENABLED
-static uint8_t timeout_saved_level;     // Store LED flg before timeout so it can be restored when LED is turned on again.
-#else
+#ifdef LIGHTS_OUT_RGB_MODE
 static led_flags_t timeout_saved_flags; // Store LED flg before timeout so it can be restored when LED is turned on again.
+#else
+static uint8_t timeout_saved_level;     // Store LED flg before timeout so it can be restored when LED is turned on again.
 #endif
 
-void lights_out_init(uint16_t lights_out_toggle_keycode, uint16_t backlight_toggle_keycode)
+void lights_out_init(void)
 {
     idle_second_counter = 0;                            // Counter for number of seconds keyboard has been idle.
     key_event_counter = 0;                              // Counter to determine if keys are being held, neutral at 0.
@@ -23,10 +23,10 @@ void lights_out_init(uint16_t lights_out_toggle_keycode, uint16_t backlight_togg
     timeout_seconds = LIGHTS_OUT_TIMEOUT;               // Backlight timeout initialized to its default configure in keymap.h
     timeout_enabled = true;                             // Enable RGB timeout by default. Enable using toggle key.
     timeout_user_value = true;                          // Has to have the same initial value as timeout_enabled.
-#ifdef LIGHTS_OUT_RGB_ENABLED
-    timeout_saved_level = get_backlight_level();        // Save backlight level for when keyboard comes back from idle.
-#else
+#ifdef LIGHTS_OUT_RGB_MODE
     timeout_saved_flags = rgb_matrix_get_flags();   // Save RGB matrix state for when keyboard comes back from idle.
+#else
+    timeout_saved_level = get_backlight_level();        // Save backlight level for when keyboard comes back from idle.
 #endif
 }
 
@@ -41,7 +41,7 @@ void lights_out_task(void) {
         }
 
         if (idle_second_counter >= timeout_seconds) {
-#ifdef LIGHTS_OUT_RGB_ENABLED
+#ifdef LIGHTS_OUT_RGB_MODE
             timeout_saved_flags = rgb_matrix_get_flags();
             rgb_matrix_set_flags(LED_FLAG_NONE);
             rgb_matrix_disable_noeeprom();
@@ -68,7 +68,7 @@ bool process_lights_out(uint16_t keycode, keyrecord_t* record) {
         // Reset the seconds counter. Without this, something like press> leave x seconds> press, would be x seconds on the effective counter not 0 as it should.
         idle_second_counter = 0;
         if (!lights_enabled) {
-#ifdef LIGHTS_OUT_RGB_ENABLED
+#ifdef LIGHTS_OUT_RGB_MODE
             rgb_matrix_enable_noeeprom();
             rgb_matrix_set_flags(rgb_time_out_saved_flag);
 #else
@@ -79,7 +79,7 @@ bool process_lights_out(uint16_t keycode, keyrecord_t* record) {
     }
 
     switch (keycode) {
-#ifdef LIGHTS_OUT_RGB_ENABLED
+#ifdef LIGHTS_OUT_RGB_MODE
         case RGB_TOG:
             if (record->event.pressed) {
                 rgb_matrix_toggle();

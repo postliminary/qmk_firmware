@@ -2,7 +2,7 @@
 
 #include "postliminary.h"
 
-void sarcasm_init();
+void sarcasm_init(void);
 
 void sarcasm_task(led_t led_state);
 

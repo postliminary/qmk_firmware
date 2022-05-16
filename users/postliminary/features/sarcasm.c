@@ -8,9 +8,6 @@ void sarcasm_init() {
 
 void sarcasm_task(led_t led_state) {
     if (sarcasm_enabled != led_state.caps_lock) {
-        if (sarcasm_enabled) {
-            unregister_weak_mods(MOD_BIT(KC_LSFT));
-        }
         sarcasm_enabled = led_state.caps_lock;
     }
 }
@@ -22,9 +19,13 @@ bool process_sarcasm(uint16_t keycode, keyrecord_t* record) {
 
     switch (keycode) {
         case KC_A ... KC_Z:
-            if (record->event.time % 2) {
-                add_weak_mods(MOD_BIT(KC_LSFT));
-            } 
+            if (record->event.pressed) {
+                if (rand() % 2) {
+                    tap_code16(LSFT(keycode));
+                } else {
+                    tap_code16(keycode);
+                }
+            }
             return true;
         default:
             return false; //Process all other keycodes normally

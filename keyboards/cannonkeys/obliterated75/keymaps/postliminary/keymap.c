@@ -14,24 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include QMK_KEYBOARD_H
-#include "features/caps_word.h"
-#include "features/lights_out.h"
-#include "Features/hold_to_reset.h"
-
-enum custom_keycodes {
-    LO_TOGG = SAFE_RANGE,  // Toggle backlight timeout
-    BOOT_AT,               // Restart into bootloader after hold timeout
-};
-
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers.
-enum layer_names {
-    _BASE,
-    _FN,
-};
+#include "postliminary.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -60,29 +43,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______,                            _______,                            _______, _______,          RESET,   KC_PGDN, _______
     )
 };
-
-void matrix_init_user(void) {
-    lights_out_init(LO_TOGG, BL_TOGG);
-    hold_to_reset_init(BOOT_AT);
-};
-
-void matrix_scan_user(void) {
-    caps_word_task();
-    lights_out_task();
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (process_caps_word(keycode, record)) { 
-        return false; 
-    }
-
-    if (process_lights_out(keycode, record)) {
-        return false;
-    }
-
-    if (process_hold_to_reset(keycode, record)) {
-        return false;
-    }
-
-    return true;
-}

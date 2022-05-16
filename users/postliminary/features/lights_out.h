@@ -6,7 +6,7 @@
 #define LIGHTS_OUT_TIMEOUT 600 // Default 10 minutes backlight timeout
 #endif
 
-void lights_out_init();
+void lights_out_init(void);
 
 void lights_out_task(void);
 

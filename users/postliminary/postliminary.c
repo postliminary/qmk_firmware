@@ -45,7 +45,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     if (process_sarcasm(keycode, record)) { return false; }
 
-    process_record_keymap(keycode, record);
+    return process_record_keymap(keycode, record);
 }
 
 __attribute__ ((weak))
@@ -53,7 +53,7 @@ bool led_update_keymap(led_t led_state) { return true; }
 
 bool led_update_user(led_t led_state) {
     sarcasm_task(led_state);
-    return led_update_keymap();
+    return led_update_keymap(led_state);
 }
 
 #ifdef LAYER_MASK_ENABLED
