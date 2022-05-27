@@ -1,15 +1,14 @@
 #include "layer_mask.h"
 
-// static uint16_t*** layers;
 static uint16_t** layer_masks;
-static uint16_t matrix_count;
+static uint16_t* layer_mask_sizes;
 
 void layer_mask_init(const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS], size_t keymaps_size) {
     // layers = keymaps;
     layer_masks = (uint16_t**)malloc(keymaps_size * sizeof(uint16_t*));
-    matrix_count = MATRIX_ROWS * MATRIX_COLS;
+    layer_mask_sizes = (uint16_t*)malloc(keymaps_size * sizeof(uint16_t));
     
-    uint16_t layer_stack[matrix_count];
+    uint16_t layer_stack[MATRIX_ROWS * MATRIX_COLS];
     uint16_t layer_stack_size = 0;
     for (uint16_t z = 0; z < keymaps_size; z++) {
         const uint16_t (*layer)[MATRIX_COLS] = keymaps[z];
@@ -27,6 +26,7 @@ void layer_mask_init(const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS], size_t 
 
         // Copy stack to layer mask
         layer_masks[z] = (uint16_t*)malloc(layer_stack_size * sizeof(uint16_t));
+        layer_mask_sizes[z] = layer_stack_size;
         for (uint16_t i = 0; i < layer_stack_size; i++) {
             layer_masks[z][i] = layer_stack[i];
         }
@@ -53,7 +53,7 @@ void apply_layer_mask(uint8_t led_min, uint8_t led_max) {
     // }
 
     const uint16_t* layer_mask = layer_masks[layer_id];
-    const uint16_t layer_mask_size = sizeof(layer_mask) / sizeof(uint16_t);
+    const uint16_t layer_mask_size = layer_mask_sizes[layer_id];
     for (uint16_t i = 0; i < layer_mask_size; i++) {
         uint16_t led_i = layer_mask[i];
         if (led_min <= led_i && led_i <= led_max) {
