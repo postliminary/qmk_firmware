@@ -55,7 +55,7 @@ void lights_out_task(void) {
     }
 }
 
-bool process_lights_out(uint16_t keycode, keyrecord_t* record) {
+void preprocess_lights_out(uint16_t keycode, keyrecord_t* record) {
     // Increment key event counter for every press and decrement for every release.
     if (record->event.pressed) {
         key_event_counter++;
@@ -70,14 +70,16 @@ bool process_lights_out(uint16_t keycode, keyrecord_t* record) {
         if (!lights_enabled) {
 #ifdef LIGHTS_OUT_RGB_MODE
             rgb_matrix_enable_noeeprom();
-            rgb_matrix_set_flags(rgb_time_out_saved_flag);
+            rgb_matrix_set_flags(timeout_saved_flags);
 #else
             backlight_level_noeeprom(timeout_saved_level);
 #endif
             lights_enabled = true;
         }
-    }
+    }    
+}
 
+bool process_lights_out(uint16_t keycode, keyrecord_t* record) {
     switch (keycode) {
 #ifdef LIGHTS_OUT_RGB_MODE
         case RGB_TOG:

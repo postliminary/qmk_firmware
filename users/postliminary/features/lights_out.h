@@ -10,4 +10,6 @@ void lights_out_init(void);
 
 void lights_out_task(void);
 
+void preprocess_lights_out(uint16_t keycode, keyrecord_t* record);
+
 bool process_lights_out(uint16_t keycode, keyrecord_t* record);
