@@ -41,6 +41,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (process_lights_out(keycode, record)) { return false; }
 #endif
     if (process_sarcasm(keycode, record)) { return false; }
+    if (process_kaomoji(keycode, record)) { return false;}
 
     return process_record_keymap(keycode, record);
 }

@@ -27,19 +27,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[_BASE] = LAYOUT_all(
         KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,                    KC_PSCR,
-		KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, _______, KC_INS,
+		KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, ___X___, KC_INS,
 		KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,          KC_DEL,
-		KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, _______, KC_ENT,           KC_HOME,
-		KC_LSFT, _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT, KC_UP,   KC_END,
+	 MO(_CAPS),  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, ___X___, KC_ENT,           KC_HOME,
+		KC_LSFT, ___X___, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT, KC_UP,   KC_END,
 		KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_FN),          KC_LEFT, KC_DOWN, KC_RGHT
     ),
 
     [_FN] = LAYOUT_all(
-        BOOT_AT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                   KC_MPLY,
-		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLU,
-		_______, _______, BL_INC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          KC_VOLD,
-		_______, _______, BL_DEC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          KC_MPRV,
-		_______, _______, BL_BRTG, BL_TOGG, LO_TOGG, _______, _______, _______, _______, _______, _______, _______,          _______, KC_PGUP, KC_MNXT,
-		_______, _______, _______,                            _______,                            _______, _______,          RESET,   KC_PGDN, _______
-    )
+        BOOT_AT, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, BL_BRTG, LO_TOGG, BL_DEC,  BL_INC,  BL_TOGG,                   KC_MPLY,
+		NK_TOGG, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_VOLU,
+		___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          KC_VOLD,
+		___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          KC_MPRV,
+		___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___, KC_PGUP, KC_MNXT,
+		___X___, ___X___, ___X___,                            ___X___,                            ___X___, _______,          ___X___, KC_PGDN, ___X___
+    ),
+
+	[_CAPS] = LAYOUT_all(
+        ___X___, UC_M_WI, UC_M_MA, UC_M_LN, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,                   ___X___,
+		___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+		___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___,
+		_______, UC_ANML, UC_SHRG, UC_DISS, UC_FLIP, UC_GIVE, UC_HNGY, UC_JOYF, UC_KAOK, UC_LOVE, UC_NRVS, UC_SURP, ___X___, KC_CAPS,          ___X___,
+		___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___, ___X___, ___X___,
+    	KC_RGUI, ___X___, ___X___,                            ___X___,                            ___X___, ___X___,          ___X___, ___X___, ___X___
+    ),
 };

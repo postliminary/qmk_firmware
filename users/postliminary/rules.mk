@@ -1,3 +1,4 @@
+UNICODE_ENABLE = yes
 COMMAND_ENABLE = no
 
 SRC += $(USER_PATH)/postliminary.c
