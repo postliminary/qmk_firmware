@@ -3,6 +3,7 @@ COMMAND_ENABLE = no
 
 SRC += $(USER_PATH)/postliminary.c
 SRC += $(USER_PATH)/features/caps_word.c
+SRC += $(USER_PATH)/features/happy_hacking.c
 SRC += $(USER_PATH)/features/hold_to_reset.c
 SRC += $(USER_PATH)/features/kaomoji.c
 SRC += $(USER_PATH)/features/sarcasm.c

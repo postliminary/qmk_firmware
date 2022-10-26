@@ -44,16 +44,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,          KC_DEL,
      MO(_CAPS),  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_HOME,
         KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT, KC_UP,   KC_END,
-        KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_FN),   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
+        KC_LCTL, KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_FN), KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT
+    ),
+
+    [_HHKB] = LAYOUT(
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_BSLS,          KC_MPLY,
+        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_DEL,           KC_HOME,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSPC,          KC_END,
+        KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGUP,
+        KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,          KC_RSFT, KC_UP,   KC_PGDN,
+        KC_LGUI, ___X___, KC_LALT,                            KC_SPC,                             KC_RALT, ___X___, MO(_FN), KC_LEFT, KC_DOWN, KC_RGHT
     ),
 
     [_FN] = LAYOUT(
-        BOOT_AT, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_SPD, RGB_SPI,RGB_RMOD, RGB_MOD, LO_TOGG, RGB_VAD, RGB_VAI, RGB_TOG, KC_CALC,          KC_MPLY,
-        NK_TOGG, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          KC_MUTE,
-        ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          KC_MSTP,
-        ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___,          KC_MPRV,
-        ___X___,          ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___, KC_PGUP, KC_MNXT,
-        ___X___, ___X___, ___X___,                            ___X___,                            ___X___, _______, ___X___, ___X___, KC_PGDN, ___X___
+        ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          KC_MPLY,
+        ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          KC_MPRV,
+        ___X___, ___X___, KC_WH_U, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_PSCR, ___X___, ___X___, ___X___,          KC_MNXT,
+        ___X___, KC_WH_L, KC_WH_D, KC_WH_L, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___,          KC_PGUP,
+        ___X___,          ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___, ___X___, KC_PGDN,
+        ___X___, ___X___, ___X___,                            ___X___,                           MO(_KBFN),_______, _______, ___X___, ___X___, ___X___
     ),
 
     [_CAPS] = LAYOUT(
@@ -63,6 +72,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, UC_ANML, UC_SHRG, UC_DISS, UC_FLIP, UC_GIVE, UC_HNGY, UC_JOYF, UC_KAOK, UC_LOVE, UC_NRVS, UC_SURP,          KC_CAPS,          ___X___,
         ___X___,          ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___, ___X___, ___X___,
         KC_RGUI, ___X___, ___X___,                            ___X___,                            ___X___, ___X___, ___X___, ___X___, ___X___, ___X___
+    ),
+
+    [_KBFN] = LAYOUT(
+        BOOT_AT, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_SPD, RGB_SPI,RGB_RMOD, RGB_MOD, LO_TOGG, RGB_VAD, RGB_VAI, RGB_TOG, ___X___,          ___X___,
+        NK_TOGG, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___,
+        ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___,
+        ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, HH_TOGG, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___,          ___X___,
+        ___X___,          ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,          ___X___, ___X___, ___X___,
+        ___X___, ___X___, ___X___,                            ___X___,                            _______, _______, _______, ___X___, ___X___, ___X___
     ),
 };
 // clang-format on
@@ -90,7 +108,7 @@ void matrix_init_keymap(void) {
 //  71, Side led 02    1, `~       7, 1        13, 2        19, 3        24, 4        29, 5        35, 6        40, 7        45, 8        51, 9        57, 0        62, -_       79, (=+)     86, BackSpc   		     73, Del        72, Side led 13
 //  74, Side led 03    2, Tab      8, Q        14, W        20. E        25, R        30, T        36, Y        41, U        46, I        52, O        58, P        63, [{       90, ]}                     			   76, PgUp       75, Side led 14
 //  77, Side led 04    3, Caps     9, A        15, S        21, D        26, F        31, G        37, H        42, J        47, K        53, L        59, ;:       64, '"       95, #        97, Enter     			   87, PgDn       78, Side led 15
-//  81, Side led 05    4, Sh_L     67,\		     10, Z        16, X        22, C        27, V        32, B        38, N        43, M        48, ,<       54, .<       60, /?             		    91, Sh_R     94, Up    83, End        82, Side led 16
+//  81, Side led 05    4, Sh_L     67,\		   10, Z        16, X        22, C        27, V        32, B        38, N        43, M        48, ,<       54, .<       60, /?             		    91, Sh_R     94, Up    83, End        82, Side led 16
 //  84, Side led 06    5, Ct_L     11,Win_L    17, Alt_L                              			   33, SPACE                              	  49, Alt_R    55, FN       65, Ct_R                  96, Left     98, Down  80, Right      85, Side led 17
 //  88, Side led 07                                                                                                                                                                                                        		    	 89, Side led 18
 //  92, Side led 08 

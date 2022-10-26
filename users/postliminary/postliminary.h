@@ -2,6 +2,7 @@
 
 #include QMK_KEYBOARD_H
 #include "features/caps_word.h"
+#include "features/happy_hacking.h"
 #include "features/hold_to_reset.h"
 #include "features/kaomoji.h"
 #include "features/layer_mask.h"
@@ -12,6 +13,7 @@
 
 enum userspace_keycodes {
     BOOT_AT = SAFE_RANGE,   // Hold to reset
+    HH_TOGG,                // HHKB toggle
     LO_TOGG,                // Lights out toggle
     UC_ANML,                // Random animal kaomoji
     UC_SHRG,                // Shrug kaomoji
@@ -29,6 +31,8 @@ enum userspace_keycodes {
 
 enum userspace_layers {
     _BASE,
-    _FN,
-    _CAPS
+    _HHKB,                  // HHKB-ish base layer
+    _FN,                    // FN key layer
+    _CAPS,                  // CAPS key layer
+    _KBFN                   // Keyboard FN layer
 };
