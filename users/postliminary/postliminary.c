@@ -1,9 +1,3 @@
-/**
- * TODO
- * Layer mask
- * Unicode kaomojis
- * Sarcasm
- */
 #include "postliminary.h"
 
 __attribute__ ((weak)) 
@@ -13,7 +7,9 @@ void matrix_init_user(void) {
 #ifdef LIGHTS_OUT_ENABLED
     lights_out_init();
 #endif
+#ifdef SARCASM_ENABLED
     sarcasm_init();
+#endif
     matrix_init_keymap();
 };
 
@@ -37,12 +33,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
     if (process_caps_word(keycode, record)) { return false; }
     if (process_hold_to_reset(keycode, record)) { return false; }
+#ifdef HAPPY_HACKING_ENABLED
     if (process_happy_hacking(keycode, record)) { return false; }
+#endif
 #ifdef LIGHTS_OUT_ENABLED
     if (process_lights_out(keycode, record)) { return false; }
 #endif
+#ifdef SARCASM_ENABLED
     if (process_sarcasm(keycode, record)) { return false; }
+#endif
+#ifdef KAOMOJI_ENABLED
     if (process_kaomoji(keycode, record)) { return false;}
+#endif
 
     return process_record_keymap(keycode, record);
 }
@@ -51,7 +53,9 @@ __attribute__ ((weak))
 bool led_update_keymap(led_t led_state) { return true; }
 
 bool led_update_user(led_t led_state) {
+#ifdef SARCASM_ENABLED
     sarcasm_task(led_state);
+#endif
     return led_update_keymap(led_state);
 }
 
