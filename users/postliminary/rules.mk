@@ -1,20 +1,21 @@
 COMMAND_ENABLE = no
 
 # Custom options
-HAPPY_HACKING_ENABLED = no
-KAOMOJI_ENABLED = no
-LAYER_MASK_ENABLED = no
-LIGHTS_OUT_ENABLED = no
-LIGHTS_OUT_RGB_MODE = no
-SARCASM_ENABLED = no
-
-# Firmware optimizations
-NO_TAPPING				 = no
-NO_PRINT				 = yes
+# CAPS_WORD_ENABLED = yes
+# HAPPY_HACKING_ENABLED = yes
+# KAOMOJI_ENABLED = yes
+# LAYER_MASK_ENABLED = yes
+# LIGHTS_OUT_ENABLED = yes
+# LIGHTS_OUT_RGB_MODE = yes
+# SARCASM_ENABLED = yes
 
 SRC += $(USER_PATH)/postliminary.c
-SRC += $(USER_PATH)/features/caps_word.c
 SRC += $(USER_PATH)/features/hold_to_reset.c
+
+ifeq ($(strip $(CAPS_WORD_ENABLED)), yes)
+    OPT_DEFS += -DCAPS_WORD_ENABLED
+	SRC += $(USER_PATH)/features/caps_word.c.c
+endif
 
 ifeq ($(strip $(HAPPY_HACKING_ENABLED)), yes)
     OPT_DEFS += -DHAPPY_HACKING_ENABLED
@@ -44,12 +45,4 @@ endif
 ifeq ($(strip $(SARCASM_ENABLED)), yes)
     OPT_DEFS += -DSARCASM_ENABLED
     SRC += $(USER_PATH)/features/sarcasm.c
-endif
-
-ifeq ($(strip $(NO_PRINT)), yes)
-    OPT_DEFS += -DNO_PRINT -DNO_DEBUG
-endif
-
-ifeq ($(strip $(NO_TAPPING)), yes)
-    OPT_DEFS += -DNO_ACTION_TAPPING
 endif

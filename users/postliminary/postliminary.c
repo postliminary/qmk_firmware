@@ -17,7 +17,9 @@ __attribute__ ((weak))
 void matrix_scan_keymap(void) {}
 
 void matrix_scan_user(void) {
+#ifdef CAPS_WORD_ENABLED
     caps_word_task();
+#endif    
 #ifdef LIGHTS_OUT_ENABLED
     lights_out_task();
 #endif
@@ -31,7 +33,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef LIGHTS_OUT_ENABLED
     preprocess_lights_out(keycode, record);
 #endif
+#ifdef CAPS_WORD_ENABLED
     if (process_caps_word(keycode, record)) { return false; }
+#endif
     if (process_hold_to_reset(keycode, record)) { return false; }
 #ifdef HAPPY_HACKING_ENABLED
     if (process_happy_hacking(keycode, record)) { return false; }

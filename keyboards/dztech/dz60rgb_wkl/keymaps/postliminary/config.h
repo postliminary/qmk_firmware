@@ -1,0 +1,1 @@
+#define RGB_DISABLE_TIMEOUT 600000 // 1000ms * 60s * 10min
