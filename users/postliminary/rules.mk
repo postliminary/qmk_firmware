@@ -14,7 +14,7 @@ SRC += $(USER_PATH)/features/hold_to_reset.c
 
 ifeq ($(strip $(CAPS_WORD_ENABLED)), yes)
     OPT_DEFS += -DCAPS_WORD_ENABLED
-	SRC += $(USER_PATH)/features/caps_word.c.c
+	SRC += $(USER_PATH)/features/caps_word.c
 endif
 
 ifeq ($(strip $(HAPPY_HACKING_ENABLED)), yes)
