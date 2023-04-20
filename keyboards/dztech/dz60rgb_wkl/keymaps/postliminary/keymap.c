@@ -10,10 +10,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FN] = LAYOUT_60_tsangan_hhkb(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   KC_F13, KC_INS,
-        _______, KC_HOME, KC_UP,   KC_END,  ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_PSCR, KC_VOLD, KC_VOLU,  KC_DEL,
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_CAPS,          _______,
-        _______,          ___X___, ___X___, ___X___, ___X___, KC_PGUP, KC_PGDN, ___X___, KC_MPRV, KC_MNXT, KC_MPLY, _______, _______,
-        ___X___,MO(_KBFN),_______,                            _______,                                     _______, _______, ___X___
+        _______, ___X___, KC_WH_U, ___X___, ___X___, ___X___, ___X___, KC_HOME, KC_UP,   KC_END,  KC_PGUP, KC_VOLD, KC_VOLU,  KC_DEL,
+        _______, KC_WH_L, KC_WH_D, KC_WH_R, ___X___, KC_PSCR, ___X___, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, ___X___,          _______,
+        _______,          ___X___, ___X___, KC_CAPS, ___X___, ___X___, ___X___, ___X___, KC_MPRV, KC_MNXT, KC_MPLY, _______, _______,
+        ___X___, _______, _______,                            _______,                                     _______,MO(_KBFN), ___X___
     ),
     [_KBFN] = LAYOUT_60_tsangan_hhkb(
         BOOT_AT, _______, _______, _______, _______, _______, _______, _______, LO_TOGG, RGB_RMOD,RGB_MOD, RGB_VAD, RGB_VAI, RGB_TOG, _______,
